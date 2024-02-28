@@ -74,26 +74,7 @@ public class TilemapVisualizer : MonoBehaviour
                 Vector3 finalPosition = enemySpawnerPos + directionToPlayer * offsetDistance;
 
                 Instantiate(enemySpawner, finalPosition, Quaternion.identity);
-                //if (position.x>0)
-                //{
-                //    if(position.y>0)
-                //    {
-                //        Instantiate(enemySpawner, new Vector3(position.x-0.5f, position.y-0.5f, 0f), Quaternion.identity);
-                //    } else if(position.y < 0)
-                //    {
-                //        Instantiate(enemySpawner, new Vector3(position.x-0.5f, position.y+0.5f, 0f), Quaternion.identity);
-                //    }
-                //} else if(position.x < 0)
-                //{
-                //    if (position.y > 0)
-                //    {
-                //        Instantiate(enemySpawner, new Vector3(position.x+0.5f, position.y-0.5f, 0f), Quaternion.identity);
-                //    }
-                //    else if(position.y < 0)
-                //    {
-                //        Instantiate(enemySpawner, new Vector3(position.x+0.5f, position.y+0.5f, 0f), Quaternion.identity);
-                //    }
-                //}
+                
             }
             if (length == 1)
             {
@@ -105,28 +86,7 @@ public class TilemapVisualizer : MonoBehaviour
                 Vector3 finalPosition = goalPos + directionToPlayer * offsetDistance;
 
                 Instantiate(goal, finalPosition, Quaternion.identity);
-                //if (position.x > 0)
-                //{
-                //    if (position.y > 0)
-                //    {
-                //        Instantiate(goal, new Vector3(position.x - 0.5f, position.y - 0.5f, 0f), Quaternion.identity);
-                //    }
-                //    else if (position.y < 0)
-                //    {
-                //        Instantiate(goal, new Vector3(position.x - 0.5f, position.y + 0.5f, 0f), Quaternion.identity);
-                //    }
-                //}
-                //else if (position.x < 0)
-                //{
-                //    if (position.y > 0)
-                //    {
-                //        Instantiate(goal, new Vector3(position.x + 0.5f, position.y - 0.5f, 0f), Quaternion.identity);
-                //    }
-                //    else if (position.y < 0)
-                //    {
-                //        Instantiate(goal, new Vector3(position.x + 0.5f, position.y + 0.5f, 0f), Quaternion.identity);
-                //    }
-                //}
+                
             }
             PaintSingleTile(tilemap, tile, position);
         }

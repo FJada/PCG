@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2253911629886400664, guid: f1d7a141f15b94fc99e0dc6deaa7af8a, type: 3}
       propertyPath: m_Name
-      value: Executioner 1
+      value: Executioner
       objectReference: {fileID: 0}
     - target: {fileID: -2253911629886400664, guid: f1d7a141f15b94fc99e0dc6deaa7af8a, type: 3}
       propertyPath: m_TagString
@@ -32,13 +32,17 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: f1d7a141f15b94fc99e0dc6deaa7af8a, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: f1d7a141f15b94fc99e0dc6deaa7af8a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: f1d7a141f15b94fc99e0dc6deaa7af8a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: f1d7a141f15b94fc99e0dc6deaa7af8a, type: 3}
       propertyPath: m_LocalPosition.x

@@ -7,7 +7,7 @@ public class executionerControls : MonoBehaviour
 
     private float range;
     public Transform target;
-    private float minDistance = 2f;
+    private float minDistance = 3f;
     private bool targetCollision = false;
     private float speed = 1f;
     private float thrust = 2f;
@@ -66,6 +66,8 @@ public class executionerControls : MonoBehaviour
     {
         targetCollision = false;
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        target.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+
     }
 
     public void TakeDamage(int amount)
