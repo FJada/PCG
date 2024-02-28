@@ -5,9 +5,12 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     public float moveSpeed = 2f;
-    // Start is called before the first frame update
-  
+    private SpriteRenderer spriteRenderer;
 
+    private void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -17,6 +20,15 @@ public class PlayerControl : MonoBehaviour
 
         // Calculate movement direction
         Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f) * moveSpeed * Time.deltaTime;
+
+        if(horizontalInput > 0)
+        {
+            spriteRenderer.flipX = false;
+        } else if (horizontalInput < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+
 
         // Move the player
         transform.Translate(movement);
