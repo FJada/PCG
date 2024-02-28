@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2314964040534622172
+--- !u!1001 &1160089094230477425
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,19 +10,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2253911629886400664, guid: f1d7a141f15b94fc99e0dc6deaa7af8a, type: 3}
       propertyPath: m_Name
-      value: Executioner
+      value: player
       objectReference: {fileID: 0}
-    - target: {fileID: 3626916397498700004, guid: f1d7a141f15b94fc99e0dc6deaa7af8a, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
+    - target: {fileID: -2253911629886400664, guid: f1d7a141f15b94fc99e0dc6deaa7af8a, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878350319992209165, guid: f1d7a141f15b94fc99e0dc6deaa7af8a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878350319992209165, guid: f1d7a141f15b94fc99e0dc6deaa7af8a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: f1d7a141f15b94fc99e0dc6deaa7af8a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.71
+      value: 6.360057
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: f1d7a141f15b94fc99e0dc6deaa7af8a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.27
+      value: 8.201781
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: f1d7a141f15b94fc99e0dc6deaa7af8a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -62,39 +70,23 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: f1d7a141f15b94fc99e0dc6deaa7af8a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8699353524361387386}
+      addedObject: {fileID: 9052723732591503247}
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: f1d7a141f15b94fc99e0dc6deaa7af8a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2053937743085503754}
-    - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: f1d7a141f15b94fc99e0dc6deaa7af8a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1517177447783491215}
+      addedObject: {fileID: 6612881338182315318}
   m_SourcePrefab: {fileID: -8435245712485981826, guid: f1d7a141f15b94fc99e0dc6deaa7af8a, type: 3}
---- !u!1 &4654497530588014772 stripped
+--- !u!1 &8115778667769388313 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2253911629886400664, guid: f1d7a141f15b94fc99e0dc6deaa7af8a, type: 3}
-  m_PrefabInstance: {fileID: 2314964040534622172}
+  m_PrefabInstance: {fileID: 1160089094230477425}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8699353524361387386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4654497530588014772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8dfb190375454ef6b60feda65522172, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
---- !u!61 &2053937743085503754
+--- !u!61 &9052723732591503247
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4654497530588014772}
+  m_GameObject: {fileID: 8115778667769388313}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -133,14 +125,14 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.45, y: 0.62}
   m_EdgeRadius: 0
---- !u!50 &1517177447783491215
+--- !u!50 &6612881338182315318
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4654497530588014772}
+  m_GameObject: {fileID: 8115778667769388313}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0

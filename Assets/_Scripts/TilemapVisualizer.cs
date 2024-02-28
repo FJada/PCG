@@ -14,7 +14,9 @@ public class TilemapVisualizer : MonoBehaviour
         wallInnerCornerDownLeft, wallInnerCornerDownRight, 
         wallDiagonalCornerDownRight, wallDiagonalCornerDownLeft, wallDiagonalCornerUpRight, wallDiagonalCornerUpLeft;
 
-    public GameObject boss;
+    public GameObject enemy;
+    public GameObject player;
+    private bool instantiatePlayer = true;
 
     public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions)
     {
@@ -26,10 +28,12 @@ public class TilemapVisualizer : MonoBehaviour
         int length = positions.ToList().Count;
         foreach (var position in positions)
         {
+            if(instantiatePlayer) Instantiate(player, new Vector3(position.x, position.y, 0f), Quaternion.identity);
+            instantiatePlayer = false;
             length--;
-            if(length == 1)
+            if(length % 15 == 0)
             {
-                Instantiate(boss, new Vector3(position.x, position.y, 0f), Quaternion.identity);
+                instantiateEnemy(new Vector3(position.x, position.y, 0f));
             }
             PaintSingleTile(tilemap, tile, position);
         }
@@ -115,5 +119,11 @@ public class TilemapVisualizer : MonoBehaviour
 
         if (tile != null)
             PaintSingleTile(wallTilemap, tile, position);
+    }
+
+
+    public void instantiateEnemy(Vector3 position)
+    {
+        Instantiate(enemy, position, Quaternion.identity);
     }
 }

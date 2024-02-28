@@ -11,6 +11,7 @@ public class executionerControls : MonoBehaviour
     private bool targetCollision = false;
     private float speed = 2f;
     private float thrust = 2f;
+    private int health = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -65,5 +66,16 @@ public class executionerControls : MonoBehaviour
     {
         targetCollision = false;
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+    }
+
+    public void TakeDamage(int amount)
+    {
+        health -= amount;
+        if (health == 0) enemyDeath();
+    }
+
+    public void enemyDeath()
+    {
+        Destroy(gameObject, 2f);
     }
 }
