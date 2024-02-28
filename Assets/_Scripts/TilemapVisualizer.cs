@@ -35,7 +35,7 @@ public class TilemapVisualizer : MonoBehaviour
             if (instantiatePlayer)
             {
                 Instantiate(player, new Vector3(position.x, position.y, 0f), Quaternion.identity);
-                virtualCamera.Follow = player;
+                virtualCamera.Follow = GameObject.FindWithTag("Player").transform;
             }
             instantiatePlayer = false;
             length--;
