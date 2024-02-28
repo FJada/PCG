@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class getGridMap : MonoBehaviour
 {
     public GameObject sourceGrid; // Reference to the source grid GameObject
     public GameObject destinationGrid; // Reference to the destination grid GameObject
     public string childObjectName = "Walls";
+    public TilemapRenderer tilemapRenderer;
+    private Vector3 newScale = new Vector3(4f, 4f, 0f);
+    public GameObject background;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +21,8 @@ public class getGridMap : MonoBehaviour
     // Update is called once per frame
     public void getCurrentGridMap()
     {
+
+        background.SetActive(false);
         Camera mainCamera = Camera.main;
         Transform originalChild = sourceGrid.transform.Find("Walls");
 
@@ -43,7 +49,10 @@ public class getGridMap : MonoBehaviour
             Vector3 topRightCorner = mainCamera.ViewportToWorldPoint(new Vector3(1, 1, mainCamera.nearClipPlane));
 
             // Set the position of the GameObject to the calculated position
-            copy.transform.position = new Vector3(topRightCorner.x - 2f, topRightCorner.y - 2f, transform.position.z);
+            copy.transform.position = new Vector3(topRightCorner.x - 0.75f, topRightCorner.y - 0.75f, transform.position.z);
+            copy.transform.localScale = newScale;
+            tilemapRenderer = copy.GetComponent<TilemapRenderer>();
+            tilemapRenderer.sortingOrder = 2;
         }
         else
         {
