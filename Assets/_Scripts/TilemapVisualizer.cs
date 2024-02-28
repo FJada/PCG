@@ -18,6 +18,10 @@ public class TilemapVisualizer : MonoBehaviour
 
     public GameObject enemy;
     public Transform player;
+    public GameObject goal;
+    public GameObject enemySpawner;
+    public Vector3 playerPosition;
+    private float offsetDistance = 0.5f;
     public CinemachineVirtualCamera virtualCamera;
 
     private int tileCounter = 0;
@@ -32,6 +36,8 @@ public class TilemapVisualizer : MonoBehaviour
     private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileBase tile)
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Destroy(GameObject.FindGameObjectWithTag("Finish"));
+        Destroy(GameObject.FindGameObjectWithTag("EnemySpawner"));
 
         // Loop through each enemy and destroy them
         foreach (GameObject enemy in enemies)
@@ -44,18 +50,83 @@ public class TilemapVisualizer : MonoBehaviour
             if (instantiatePlayer)
             {
                 Instantiate(player, new Vector3(position.x, position.y, 0f), Quaternion.identity);
+                playerPosition = new Vector3( position.x, position.y, 0f);
                 virtualCamera.Follow = GameObject.FindWithTag("Player").transform;
             }
             instantiatePlayer = false;
 
             length--;
+            Debug.Log(length);
             tileCounter++;
-            if(length % 15 == 0)
+            if(length % 20 == 0 && (length!=2 || length!=1))
             {
                 if(tileCounter > 30)
                 {
                     instantiateEnemy(new Vector3(position.x, position.y, 0f));
                 }
+            }
+            if (length == 2)
+            {
+                Vector3 enemySpawnerPos = new Vector3(position.x, position.y, 0f);
+                Vector3 directionToPlayer = (playerPosition - enemySpawnerPos).normalized;
+
+                // Offset the random position towards the player by the specified distance
+                Vector3 finalPosition = enemySpawnerPos + directionToPlayer * offsetDistance;
+
+                Instantiate(enemySpawner, finalPosition, Quaternion.identity);
+                //if (position.x>0)
+                //{
+                //    if(position.y>0)
+                //    {
+                //        Instantiate(enemySpawner, new Vector3(position.x-0.5f, position.y-0.5f, 0f), Quaternion.identity);
+                //    } else if(position.y < 0)
+                //    {
+                //        Instantiate(enemySpawner, new Vector3(position.x-0.5f, position.y+0.5f, 0f), Quaternion.identity);
+                //    }
+                //} else if(position.x < 0)
+                //{
+                //    if (position.y > 0)
+                //    {
+                //        Instantiate(enemySpawner, new Vector3(position.x+0.5f, position.y-0.5f, 0f), Quaternion.identity);
+                //    }
+                //    else if(position.y < 0)
+                //    {
+                //        Instantiate(enemySpawner, new Vector3(position.x+0.5f, position.y+0.5f, 0f), Quaternion.identity);
+                //    }
+                //}
+            }
+            if (length == 1)
+            {
+
+                Vector3 goalPos = new Vector3(position.x, position.y, 0f);
+                Vector3 directionToPlayer = (playerPosition - goalPos).normalized;
+
+                // Offset the random position towards the player by the specified distance
+                Vector3 finalPosition = goalPos + directionToPlayer * offsetDistance;
+
+                Instantiate(goal, finalPosition, Quaternion.identity);
+                //if (position.x > 0)
+                //{
+                //    if (position.y > 0)
+                //    {
+                //        Instantiate(goal, new Vector3(position.x - 0.5f, position.y - 0.5f, 0f), Quaternion.identity);
+                //    }
+                //    else if (position.y < 0)
+                //    {
+                //        Instantiate(goal, new Vector3(position.x - 0.5f, position.y + 0.5f, 0f), Quaternion.identity);
+                //    }
+                //}
+                //else if (position.x < 0)
+                //{
+                //    if (position.y > 0)
+                //    {
+                //        Instantiate(goal, new Vector3(position.x + 0.5f, position.y - 0.5f, 0f), Quaternion.identity);
+                //    }
+                //    else if (position.y < 0)
+                //    {
+                //        Instantiate(goal, new Vector3(position.x + 0.5f, position.y + 0.5f, 0f), Quaternion.identity);
+                //    }
+                //}
             }
             PaintSingleTile(tilemap, tile, position);
         }
@@ -147,5 +218,29 @@ public class TilemapVisualizer : MonoBehaviour
     public void instantiateEnemy(Vector3 position)
     {
         Instantiate(enemy, position, Quaternion.identity);
+    }
+
+    Vector2 AdjustPosition(Vector2 position)
+    {
+        // Cast rays in all four directions
+        RaycastHit2D hitUp = Physics2D.Raycast(position, Vector2.up, 0.5f);
+        RaycastHit2D hitDown = Physics2D.Raycast(position, Vector2.down, 0.5f);
+        RaycastHit2D hitLeft = Physics2D.Raycast(position, Vector2.left, 0.5f);
+        RaycastHit2D hitRight = Physics2D.Raycast(position, Vector2.right, 0.5f);
+
+        // Adjust the position if any ray hits a collider
+        if (hitUp.collider != null)
+            position.y = hitUp.point.y - 0.5f;
+
+        if (hitDown.collider != null)
+            position.y = hitDown.point.y + 0.5f;
+
+        if (hitLeft.collider != null)
+            position.x = hitLeft.point.x + 0.5f;
+
+        if (hitRight.collider != null)
+            position.x = hitRight.point.x - 0.5f;
+
+        return position;
     }
 }

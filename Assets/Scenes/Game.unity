@@ -238,7 +238,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 304, y: -198}
+  m_AnchoredPosition: {x: 304, y: -118}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &448286688
@@ -22559,7 +22559,9 @@ MonoBehaviour:
   wallDiagonalCornerUpRight: {fileID: 11400000, guid: ec40f53b8f35145009f81706731e71d5, type: 2}
   wallDiagonalCornerUpLeft: {fileID: 11400000, guid: 59318f6a5706f4289b33eb50b9fd5caa, type: 2}
   enemy: {fileID: 2550615577922461463, guid: 22fd82b58369e4e3d9c626a45875fa0c, type: 3}
-  player: {fileID: 9028858798140421500, guid: d0be26069e77243dfb9cfdfcc02c693d, type: 3}
+  player: {fileID: 7706278074495515414, guid: cd7aff088d71244238346a9a5036ca07, type: 3}
+  goal: {fileID: 278780123379586679, guid: bcd37cf79447f4de89247cbe7fd8a6b3, type: 3}
+  enemySpawner: {fileID: 4509106531144964266, guid: 0157a13adf8ae4708b0a6386428f60a4, type: 3}
   virtualCamera: {fileID: 1665538447}
 --- !u!4 &2072839851
 Transform:
