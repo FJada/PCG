@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System.Linq;
 
 public class TilemapVisualizer : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class TilemapVisualizer : MonoBehaviour
         wallInnerCornerDownLeft, wallInnerCornerDownRight, 
         wallDiagonalCornerDownRight, wallDiagonalCornerDownLeft, wallDiagonalCornerUpRight, wallDiagonalCornerUpLeft;
 
+    public GameObject boss;
+
     public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions)
     {
         PaintTiles(floorPositions, floorTilemap, floorTile);
@@ -20,8 +23,14 @@ public class TilemapVisualizer : MonoBehaviour
 
     private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileBase tile)
     {
+        int length = positions.ToList().Count;
         foreach (var position in positions)
         {
+            length--;
+            if(length == 1)
+            {
+                Instantiate(boss, new Vector3(position.x, position.y, 0f), Quaternion.identity);
+            }
             PaintSingleTile(tilemap, tile, position);
         }
     }
