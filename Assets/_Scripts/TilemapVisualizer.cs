@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Linq;
+using Cinemachine;
+
 
 public class TilemapVisualizer : MonoBehaviour
 {
@@ -14,7 +16,11 @@ public class TilemapVisualizer : MonoBehaviour
         wallInnerCornerDownLeft, wallInnerCornerDownRight, 
         wallDiagonalCornerDownRight, wallDiagonalCornerDownLeft, wallDiagonalCornerUpRight, wallDiagonalCornerUpLeft;
 
-    public GameObject boss;
+    public GameObject enemy;
+    public Transform player;
+    public CinemachineVirtualCamera virtualCamera;
+
+    private bool instantiatePlayer = true;
 
     public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions)
     {
@@ -26,10 +32,16 @@ public class TilemapVisualizer : MonoBehaviour
         int length = positions.ToList().Count;
         foreach (var position in positions)
         {
-            length--;
-            if(length == 1)
+            if (instantiatePlayer)
             {
-                Instantiate(boss, new Vector3(position.x, position.y, 0f), Quaternion.identity);
+                Instantiate(player, new Vector3(position.x, position.y, 0f), Quaternion.identity);
+                virtualCamera.Follow = player;
+            }
+            instantiatePlayer = false;
+            length--;
+            if(length % 15 == 0)
+            {
+                instantiateEnemy(new Vector3(position.x, position.y, 0f));
             }
             PaintSingleTile(tilemap, tile, position);
         }
@@ -115,5 +127,11 @@ public class TilemapVisualizer : MonoBehaviour
 
         if (tile != null)
             PaintSingleTile(wallTilemap, tile, position);
+    }
+
+
+    public void instantiateEnemy(Vector3 position)
+    {
+        Instantiate(enemy, position, Quaternion.identity);
     }
 }
