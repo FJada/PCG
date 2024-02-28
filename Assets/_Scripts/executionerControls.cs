@@ -7,9 +7,9 @@ public class executionerControls : MonoBehaviour
 
     private float range;
     public Transform target;
-    private float minDistance = 5f;
+    private float minDistance = 2f;
     private bool targetCollision = false;
-    private float speed = 2f;
+    private float speed = 1f;
     private float thrust = 2f;
     private int health = 2;
 

@@ -20,6 +20,8 @@ public class TilemapVisualizer : MonoBehaviour
     public Transform player;
     public CinemachineVirtualCamera virtualCamera;
 
+    private int tileCounter = 0;
+
     private bool instantiatePlayer = true;
 
     public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions)
@@ -29,6 +31,13 @@ public class TilemapVisualizer : MonoBehaviour
 
     private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileBase tile)
     {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        // Loop through each enemy and destroy them
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
         int length = positions.ToList().Count;
         foreach (var position in positions)
         {
@@ -38,10 +47,15 @@ public class TilemapVisualizer : MonoBehaviour
                 virtualCamera.Follow = GameObject.FindWithTag("Player").transform;
             }
             instantiatePlayer = false;
+
             length--;
+            tileCounter++;
             if(length % 15 == 0)
             {
-                instantiateEnemy(new Vector3(position.x, position.y, 0f));
+                if(tileCounter > 30)
+                {
+                    instantiateEnemy(new Vector3(position.x, position.y, 0f));
+                }
             }
             PaintSingleTile(tilemap, tile, position);
         }
